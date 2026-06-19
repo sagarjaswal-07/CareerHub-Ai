@@ -18,3 +18,4 @@ AI-powered career platform built with MERN Stack.
 - MongoDB
 - Cloudinary
 - Socket.io
+- Gemini AI
