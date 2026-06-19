@@ -1,0 +1,10 @@
+const ANALYSIS_STATUS = {
+  PENDING: "PENDING",
+  PROCESSING: "PROCESSING",
+  COMPLETED: "COMPLETED",
+  FAILED: "FAILED",
+};
+
+module.exports = {
+  ANALYSIS_STATUS,
+};
