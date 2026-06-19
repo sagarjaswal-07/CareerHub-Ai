@@ -16,6 +16,4 @@ AI-powered career platform built with MERN Stack.
 - Node.js
 - Express
 - MongoDB
-- Cloudinary
-- Socket.io
-- Gemini AI
+-
