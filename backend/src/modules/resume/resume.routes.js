@@ -3,40 +3,58 @@ const router = express.Router();
 
 const protect = require("../../middlewares/auth.middleware");
 const upload = require("../../middlewares/upload/resumeUpload.middleware");
+
 const resumeController = require("./resume.controller");
 
+const analysisRoutes = require("./resume.analysis.routes");
+const jdMatchRoutes = require("./jdMatch.routes");
+
+// Upload Resume
 router.post(
   "/upload",
   protect,
   upload.single("resume"),
-  resumeController.uploadResume,
+  resumeController.uploadResume
 );
 
-const cloudinary = require("../../config/cloudinary");
+// Get All User Resumes
+router.get(
+  "/",
+  protect,
+  resumeController.getUserResumes
+);
 
-router.get("/upload-test", async (req, res) => {
-  try {
-    const result = await cloudinary.uploader.upload(
-      "data:text/plain;base64,SGVsbG8gV29ybGQ=",
-      {
-        resource_type: "raw",
-      }
-    );
+// Get Resume By Id
+router.get(
+  "/:resumeId",
+  protect,
+  resumeController.getResumeById
+);
 
-    res.json({
-      success: true,
-      result,
-    });
-  } catch (error) {
-    console.error("UPLOAD TEST ERROR:");
-    console.dir(error, { depth: null });
+// Set Default Resume
+router.patch(
+  "/:resumeId/default",
+  protect,
+  resumeController.setDefaultResume
+);
 
-    res.status(500).json({
-      message: error.message,
-      name: error.name,
-      http_code: error.http_code,
-    });
-  }
-});
+// Delete Resume
+router.delete(
+  "/:resumeId",
+  protect,
+  resumeController.deleteResume
+);
+
+// Resume Analysis Routes
+router.use(
+  "/analysis",
+  analysisRoutes
+);
+
+// JD Match Routes
+router.use(
+  "/jd-match",
+  jdMatchRoutes
+);
 
 module.exports = router;

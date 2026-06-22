@@ -9,47 +9,40 @@ const register = asyncHandler(async (req, res) => {
 
   res.status(201).json({
     success: true,
-
+    message: "User registered successfully",
     data: {
       id: user._id,
       name: user.name,
       email: user.email,
       role: user.role,
+      token,
     },
-
-    token,
   });
 });
 
-const login = asyncHandler(
-  async (req, res) => {
-    const { user, token } =
-      await authService.loginUser(
-        req.body
-      );
+const login = asyncHandler(async (req, res) => {
+  const { user, token } = await authService.loginUser(req.body);
 
-    res.status(200).json({
-      success: true,
-
-      data: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-      },
+  res.status(200).json({
+    success: true,
+    message: "Login successful",
+    data: {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
       token,
-    });
-  }
-);
+    },
+  });
+});
 
-const getMe = asyncHandler(
-  async (req, res) => {
-    res.status(200).json({
-      success: true,
-      data: req.user,
-    });
-  }
-);
+const getMe = asyncHandler(async (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "User profile fetched successfully",
+    data: req.user,
+  });
+});
 
 module.exports = {
   register,

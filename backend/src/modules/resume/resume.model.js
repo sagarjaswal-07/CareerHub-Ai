@@ -39,10 +39,94 @@ const resumeSchema = new mongoose.Schema(
       required: true,
     },
 
+    rawText: {
+      type: String,
+      default: "",
+    },
+
+    parsedData: {
+      fullName: {
+        type: String,
+        default: "",
+      },
+
+      email: {
+        type: String,
+        default: "",
+      },
+
+      phone: {
+        type: String,
+        default: "",
+      },
+
+      skills: {
+        type: [String],
+        default: [],
+      },
+
+      education: {
+        type: [String],
+        default: [],
+      },
+
+      experience: {
+        type: [String],
+        default: [],
+      },
+    },
+
     analysisStatus: {
       type: String,
       enum: ["PENDING", "PROCESSING", "COMPLETED", "FAILED"],
       default: "PENDING",
+    },
+
+    analysis: {
+      overallScore: {
+        type: Number,
+        default: 0,
+      },
+
+      atsScore: {
+        type: Number,
+        default: 0,
+      },
+
+      summary: {
+        type: String,
+        default: "",
+      },
+
+      strengths: {
+        type: [String],
+        default: [],
+      },
+
+      weaknesses: {
+        type: [String],
+        default: [],
+      },
+
+      suggestions: {
+        type: [String],
+        default: [],
+      },
+
+      missingSkills: {
+        type: [String],
+        default: [],
+      },
+
+      recommendedRoles: {
+        type: [String],
+        default: [],
+      },
+
+      analyzedAt: {
+        type: Date,
+        default: null,
+      },
     },
 
     isDefault: {

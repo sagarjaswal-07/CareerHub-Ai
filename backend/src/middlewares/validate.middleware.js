@@ -11,7 +11,7 @@ const validate = (schema) => {
           error?.issues?.[0]?.message ||
           "Validation Error",
       });
-    }
+    } 
   };
 };
 

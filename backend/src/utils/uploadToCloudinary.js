@@ -21,4 +21,18 @@ const uploadToCloudinary = (buffer) => {
   });
 };
 
-module.exports = uploadToCloudinary;
+const deleteFromCloudinary = async (
+  publicId
+) => {
+  return cloudinary.uploader.destroy(
+    publicId,
+    {
+      resource_type: "raw",
+    }
+  );
+};
+
+module.exports = {
+  uploadToCloudinary,
+  deleteFromCloudinary,
+};
